@@ -1,13 +1,11 @@
 import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import { port } from './config';
+import OpenAIService from './services/OpenAIService';
 
 const app: Express = express();
-const port = process.env.PORT || 4000;
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
+app.get('/', async (req: Request, res: Response) => {
+  res.json(await OpenAIService.getModels());
 });
 
 app.listen(port, () => {
