@@ -6,10 +6,4 @@ const configuration = new Configuration({
   apiKey: openAI.apiKey,
 });
 
-class OpenAIService {
-  private api = new OpenAIApi(configuration);
-
-  getModels = () => this.api.listModels().then((res) => res.data.data);
-}
-
-export default new OpenAIService();
+export default new OpenAIApi(configuration);

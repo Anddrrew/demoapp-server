@@ -1,15 +1,14 @@
-import express, { Express, Request, Response } from 'express';
+import express from 'express';
 import authMiddleware, { authErrorHandler } from './middlewares/authMiddleware';
 import errorHandler from './middlewares/errorHandler';
-import OpenAIService from './services/OpenAIService';
 import { port } from './config';
+import RootRouter from './routes';
 
-const app: Express = express();
+const app = express();
+app.use(express.json());
 app.use(authMiddleware);
 
-app.get('/', async (req: Request, res: Response) => {
-  res.json(await OpenAIService.getModels());
-});
+RootRouter(app);
 
 app.use(authErrorHandler);
 app.use(errorHandler);
