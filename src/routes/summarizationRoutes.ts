@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import SummarizationService from '../services/SummarizationService';
 import { StatusCodes } from 'http-status-codes';
-import summarizationInputScheme from '../schemas/summarization/summarizationInputScheme';
+import summarizationInputScheme from '../schemas/summarizationInputScheme';
 
 class SummarizationController {
   static async getSummarization(req: Request, res: Response) {
