@@ -4,9 +4,11 @@ import errorHandler from './middlewares/errorHandler';
 import { port } from './config';
 import RootRouter from './routes';
 import cors from 'cors';
+import morgan from 'morgan';
 
 const app = express();
 app.use(cors());
+app.use(morgan('tiny'));
 app.use(express.json());
 app.use(authMiddleware);
 
