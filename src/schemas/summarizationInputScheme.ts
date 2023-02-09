@@ -7,8 +7,8 @@ const frequencyPenalty = 0.0;
 const presencePenalty = 1;
 
 const summarizationInputScheme = Joi.object({
-  text: Joi.string().min(0).max(2000).required(),
-  maxTokens: Joi.number().min(0).max(2000).default(maxTokens),
+  text: Joi.string().min(0).max(3000).required(),
+  maxTokens: Joi.number().min(0).max(990).default(maxTokens),
   temperature: Joi.number().min(0).max(1).default(temperature),
   topP: Joi.number().min(0).max(1).default(topP),
   frequencyPenalty: Joi.number().min(0).max(2).default(frequencyPenalty),
