@@ -1,15 +1,22 @@
-import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+import express from 'express';
+import authMiddleware, { authErrorHandler } from './middlewares/authMiddleware';
+import errorHandler from './middlewares/errorHandler';
+import { port } from './config';
+import RootRouter from './routes';
+import cors from 'cors';
+import morgan from 'morgan';
 
-dotenv.config();
+const app = express();
+app.use(cors());
+app.use(morgan('tiny'));
+app.use(express.json());
+app.use(authMiddleware);
 
-const app: Express = express();
-const port = process.env.PORT || 4000;
+RootRouter(app);
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
+app.use(authErrorHandler);
+app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+  console.log(`[INFO]: Server is running at http://localhost:${port}`);
 });
