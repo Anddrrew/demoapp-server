@@ -5,7 +5,7 @@ export default function errorHandler(
   err: unknown,
   req: Request,
   res: Response,
-  _next: NextFunction
+  next: NextFunction
 ) {
   console.error(err);
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
